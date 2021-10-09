@@ -364,8 +364,20 @@ def pca_analisis(data):
 
     The final data without variables of little variability importance.
 
-
-
+	Examples:
+    from broomlib.MachineLearning import pca_analisis
+    from broomlib.MachineLearning import transformdict
+    from sklearn.datasets import load_boston
+    from sklearn.decomposition import PCA
+    from sklearn.pipeline import make_pipeline
+    import pandas as pd
+    import seaborn as sns
+    import numpy as np
+    import matplotlib.pyplot as plt
+    x=pd.DataFrame(load_boston().data)
+    x_tratado=transformdict(x)    
+    new_data=pca_analisis(x_tratado)
+    #El usuario debe dar el paso final para escoger el número de variables que se van fuera
     '''
     pca_pipe = make_pipeline(PCA())
     pca_pipe.fit(data[data.columns[:-1]])
@@ -415,6 +427,6 @@ def pca_analisis(data):
     numero = input('¿How many variables to drop?')
     variables = []
     for i in range(int(numero)):
-        variables.append(input('Dropping the variable'))
+        variables.append(input('Name of one dropping variable'))
     data = data.drop(variables, 1)
     return data
