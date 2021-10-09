@@ -14,7 +14,6 @@ from imblearn.under_sampling import RandomUnderSampler
 from imblearn.pipeline import Pipeline
 from sklearn.decomposition import PCA
 from sklearn.pipeline import make_pipeline
-import numpy as np
 
 
 def transformdict(df, tansformation):
@@ -40,11 +39,10 @@ def transformdict(df, tansformation):
 
     'inv' : This will reverse the data, is usefull if you have a long right tail in the data.
 
-    'Box_Cox' : This will adapt the data macking a translation (That dont affects the analisis)
-            just to make the traditional box cox transformation based on logaritmic function
-            (Cant be used for ceros or negative values). Is the more agressive one but at the
-            same time one of the more effective one if u search normality. Is not recommended
-            if you dont want an agressive non lineal transformation.
+    'Box_Cox' : This will adapt the data macking a translation that consist in add up all the data the minimum value in
+    absolut value and plus one unit (That dont affects the analisis) just to make the traditional box cox transformation 
+    based on logaritmic function (Cant be used for ceros or negative values). Is the more agressive one but at the same time 
+    one of the more effective one if u search normality. Is not recommended if you dont want an agressive non lineal transformation.
 
     'sqrt' : This will make the square root transformation to the data, is very usefull if you have
         long right tails or long left tails. In negative numbers it use the python language.
@@ -58,7 +56,25 @@ def transformdict(df, tansformation):
 
     -----------
         Returns: [transformed data]
-    '''
+    
+	Examples:
+	from sklearn.datasets import load_boston
+	from broomlib.MachineLearning import transformdict 
+	from sklearn.preprocessing import StandardScaler
+	import math
+	from scipy import stats
+	import numpy as np
+	import pandas as pd
+	import matplotlib.pyplot as plt
+	import seaborn as sns
+	import warnings
+	warnings.filterwarnings("ignore")
+	
+	x=pd.DataFrame(load_boston().data) #boston Data
+	z=transformdict(x)
+	print(z)
+
+'''
 
     print('Unmodified Data')
     fig = plt.figure(figsize=(20, 30))
