@@ -51,7 +51,7 @@ def transformdict(df, tansformation):
 
     'cuad' : This will make the cuadratic transformation and is useful if u want to gain variability.
 
-
+carrer
     'data': A DataFrame with the data that you want to transform.
 
     'tansformation' : The transformation that you want, by deafult we use the logaritmic function ('log').
